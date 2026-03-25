@@ -1,0 +1,79 @@
+{
+  "squad_name": "Pixel Resume Squad",
+  "project": "Interactive Pixel Art Resume Website",
+  "created_at": "2026-03-19",
+  "orchestrator_version": "1.0.0",
+  "agents": {
+    "frontend-dev": {
+      "name": "Frontend Developer",
+      "status": "active",
+      "folder": "agents/frontend-dev",
+      "expertise": ["phaser.js", "typescript", "game-loop", "physics", "camera", "input-handling", "vite", "react"],
+      "current_task": null,
+      "tasks_completed": 0,
+      "last_active": null
+    },
+    "pixel-artist": {
+      "name": "Pixel Artist",
+      "status": "active",
+      "folder": "agents/pixel-artist",
+      "expertise": ["sprite-sheets", "tilemaps", "animation", "character-design", "environment-art", "aseprite", "piskel"],
+      "current_task": null,
+      "tasks_completed": 0,
+      "last_active": null
+    },
+    "ui-ux-designer": {
+      "name": "UI/UX Designer",
+      "status": "active",
+      "folder": "agents/ui-ux-designer",
+      "expertise": ["layout", "responsive-design", "css-animations", "typography", "transitions", "figma"],
+      "current_task": null,
+      "tasks_completed": 0,
+      "last_active": null
+    },
+    "sound-designer": {
+      "name": "Sound Designer",
+      "status": "active",
+      "folder": "agents/sound-designer",
+      "expertise": ["chiptune", "8bit-sfx", "web-audio-api", "howler.js", "audio-sprites"],
+      "current_task": null,
+      "tasks_completed": 0,
+      "last_active": null
+    },
+    "qa-tester": {
+      "name": "QA Tester",
+      "status": "active",
+      "folder": "agents/qa-tester",
+      "expertise": ["cross-browser", "performance", "accessibility", "playwright", "lighthouse", "game-testing"],
+      "current_task": null,
+      "tasks_completed": 0,
+      "last_active": null
+    },
+    "project-manager": {
+      "name": "Project Manager",
+      "status": "active",
+      "folder": "agents/project-manager",
+      "expertise": ["sprint-planning", "task-breakdown", "progress-tracking", "risk-assessment", "milestones"],
+      "current_task": null,
+      "tasks_completed": 0,
+      "last_active": null
+    },
+    "cv-writer": {
+      "name": "CV Writer",
+      "status": "active",
+      "folder": "agents/cv-writer",
+      "expertise": ["resume-writing", "ats-optimization", "achievement-quantification", "career-narrative", "tech-industry-cv", "content-structuring"],
+      "current_task": null,
+      "tasks_completed": 0,
+      "last_active": null
+    }
+  },
+  "agent_creation_log": [
+    {
+      "agent_id": "cv-writer",
+      "created_at": "2026-03-19",
+      "reason": "Need expertise in professional CV writing, ATS optimization, and resume content for the pixel art resume website",
+      "created_by": "orchestrator"
+    }
+  ]
+}
