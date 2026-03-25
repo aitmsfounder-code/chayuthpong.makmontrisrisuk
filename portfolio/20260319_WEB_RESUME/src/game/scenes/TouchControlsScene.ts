@@ -4,15 +4,12 @@ import { TouchState } from '../systems/TouchState';
 const BTN_SIZE = 56;
 const BTN_GAP = 8;
 const MARGIN_X = 20;
-const MARGIN_Y = 16;
-const ALPHA_IDLE = 0.25;
-const ALPHA_PRESS = 0.55;
-const BG_COLOR = 0x3898d8;
+const MARGIN_Y = 190;        // สูงกว่าหัวตัวละคร
+const ALPHA_IDLE = 0.35;
+const ALPHA_PRESS = 0.65;
+const BG_COLOR = 0x8B1A1A;   // แดงเข้ม Famicom D-pad
+const BG_PRESS = 0xCC2222;   // แดงสว่างตอนกด
 const ARROW_COLOR = 0xffffff;
-
-function isTouchDevice(): boolean {
-  return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-}
 
 export class TouchControlsScene extends Phaser.Scene {
   constructor() {
@@ -20,8 +17,6 @@ export class TouchControlsScene extends Phaser.Scene {
   }
 
   create(): void {
-    if (!isTouchDevice()) return;
-
     // Fixed camera (ignore world scroll)
     this.cameras.main.setScroll(0, 0);
 
@@ -31,20 +26,19 @@ export class TouchControlsScene extends Phaser.Scene {
     const leftX = MARGIN_X;
     const btnY = h - MARGIN_Y - BTN_SIZE;
 
-    this.makeButton(leftX, btnY, 'left', 'left');
-    this.makeButton(leftX + BTN_SIZE + BTN_GAP, btnY, 'right', 'right');
+    this.makeButton(leftX, btnY, 'left');
+    this.makeButton(leftX + BTN_SIZE + BTN_GAP, btnY, 'right');
 
     // ── Right side: DOWN / UP (jump) ──
     const rightBaseX = Number(this.game.config.width) - MARGIN_X - BTN_SIZE;
 
-    this.makeButton(rightBaseX - BTN_SIZE - BTN_GAP, btnY, 'down', 'down');
-    this.makeButton(rightBaseX, btnY, 'up', 'up');
+    this.makeButton(rightBaseX - BTN_SIZE - BTN_GAP, btnY, 'down');
+    this.makeButton(rightBaseX, btnY, 'up');
   }
 
   private makeButton(
     x: number, y: number,
     direction: 'left' | 'right' | 'up' | 'down',
-    _label: string,
   ): void {
     const gfx = this.add.graphics();
 
@@ -64,7 +58,7 @@ export class TouchControlsScene extends Phaser.Scene {
     zone.on('pointerdown', () => {
       TouchState[direction] = true;
       gfx.clear();
-      gfx.fillStyle(BG_COLOR, ALPHA_PRESS);
+      gfx.fillStyle(BG_PRESS, ALPHA_PRESS);
       gfx.fillRoundedRect(x, y, BTN_SIZE, BTN_SIZE, 6);
       gfx.lineStyle(2, 0xffffff, 0.4);
       gfx.strokeRoundedRect(x, y, BTN_SIZE, BTN_SIZE, 6);
