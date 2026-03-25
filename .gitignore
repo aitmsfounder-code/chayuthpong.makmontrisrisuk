@@ -1,24 +1,21 @@
-# Dependencies
+# Ignore everything at root
+/*
+
+# Keep these
+!.gitignore
+!.github/
+!portfolio/
+
+# Inside portfolio, only keep web resume
+portfolio/*
+!portfolio/20260319_WEB_RESUME/
+
+# Always ignore these everywhere
 node_modules/
-
-# Build output
 dist/
-
-# OS files
 .DS_Store
 Thumbs.db
-
-# IDE
-.vscode/
-.idea/
-
-# Claude Code local state
-.claude/
-
-# Large binary / archive files
 *.zip
-
-# Environment variables
 .env
 .env.local
 .env.*.local

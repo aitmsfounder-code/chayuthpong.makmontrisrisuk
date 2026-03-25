@@ -1,10 +1,10 @@
 import Phaser from 'phaser';
 import { TouchState } from '../systems/TouchState';
 
-const BTN_SIZE = 56;
-const BTN_GAP = 8;
+const BTN_SIZE = 40;
+const BTN_GAP = 6;
 const MARGIN_X = 20;
-const MARGIN_Y = 190;        // สูงกว่าหัวตัวละคร
+const MARGIN_Y = 4;           // ใต้พื้นดิน (ground y=432, canvas h=480)
 const ALPHA_IDLE = 0.35;
 const ALPHA_PRESS = 0.65;
 const BG_COLOR = 0x8B1A1A;   // แดงเข้ม Famicom D-pad
