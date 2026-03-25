@@ -30,6 +30,7 @@ export function GameCanvas() {
         maxWidth: '800px',
         margin: '0 auto',
         aspectRatio: '800 / 480',
+        touchAction: 'none',
       }}
     />
   );

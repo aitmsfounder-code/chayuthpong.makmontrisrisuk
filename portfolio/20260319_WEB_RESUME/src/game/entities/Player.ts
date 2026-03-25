@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { AudioManager } from '../systems/AudioManager';
 import { EventBus } from '../systems/EventBus';
+import { TouchState } from '../systems/TouchState';
 import { FRAMES_PER_COSTUME } from '../../assets/generate-sprite';
 
 const SPEED = 160;
@@ -125,11 +126,11 @@ export class Player {
       this.sprite.setVelocityY(0);
       this.sprite.play('idle-front', true);
 
-      if (this.cursors.up.isDown && !this.upJustPressed) {
+      if ((this.cursors.up.isDown || TouchState.up) && !this.upJustPressed) {
         this.upJustPressed = true;
         EventBus.emit('player-request-surface');
       }
-      if (!this.cursors.up.isDown) {
+      if (!this.cursors.up.isDown && !TouchState.up) {
         this.upJustPressed = false;
       }
       return;
@@ -137,7 +138,7 @@ export class Player {
 
     // ── Surface mode: normal movement ──
 
-    if (this.cursors.left.isDown) {
+    if (this.cursors.left.isDown || TouchState.left) {
       this.sprite.setVelocityX(-SPEED);
       this.sprite.setFlipX(false);
       this.lastDirection = 'left';
@@ -145,7 +146,7 @@ export class Player {
         this.sprite.play('walk-left', true);
         this.audio.playSFX('walk');
       }
-    } else if (this.cursors.right.isDown) {
+    } else if (this.cursors.right.isDown || TouchState.right) {
       this.sprite.setVelocityX(SPEED);
       this.sprite.setFlipX(false);
       this.lastDirection = 'right';
@@ -165,17 +166,17 @@ export class Player {
     }
 
     // Jump
-    if ((this.cursors.up.isDown || this.cursors.space?.isDown) && onGround) {
+    if ((this.cursors.up.isDown || this.cursors.space?.isDown || TouchState.up) && onGround) {
       this.sprite.setVelocityY(JUMP_VELOCITY);
       this.audio.playSFX('jump');
     }
 
     // DOWN in zone → request underground (one-shot)
-    if (this.cursors.down.isDown && this.inZone && onGround && !this.downJustPressed) {
+    if ((this.cursors.down.isDown || TouchState.down) && this.inZone && onGround && !this.downJustPressed) {
       this.downJustPressed = true;
       EventBus.emit('player-request-underground');
     }
-    if (!this.cursors.down.isDown) {
+    if (!this.cursors.down.isDown && !TouchState.down) {
       this.downJustPressed = false;
     }
   }

@@ -110,6 +110,9 @@ export class MainScene extends Phaser.Scene {
     // ── Listen for underground requests from Player ──
     EventBus.on('player-request-underground', () => this.enterUnderground());
     EventBus.on('player-request-surface', () => this.exitUnderground());
+
+    // ── Launch touch controls overlay for mobile ──
+    this.scene.launch('TouchControlsScene');
   }
 
   // ── Underground transitions ──
